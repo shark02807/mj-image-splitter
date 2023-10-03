@@ -1,7 +1,6 @@
 import os
 import requests
 from PIL import Image
-import io
 import sys
 
 # Function to download an image from a URL
@@ -68,4 +67,7 @@ if __name__ == "__main__":
             for i, img in enumerate(images):
                 img.save(os.path.join(output_folder, f"image_{i + 1}.jpg"))
 
-            print("Image downloaded and split into four images successfully.")
+            # Delete the downloaded image
+            os.remove(downloaded_image_path)
+
+            print("Image downloaded, split into four images, and the original image deleted successfully.")
