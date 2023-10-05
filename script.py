@@ -2,6 +2,7 @@ import os
 import requests
 from PIL import Image
 import sys
+from datetime import datetime
 
 # Function to download an image from a URL
 def download_image(image_url, save_path):
@@ -63,9 +64,12 @@ if __name__ == "__main__":
             output_folder = os.path.join(download_folder, 'output')
             os.makedirs(output_folder, exist_ok=True)
 
-            # Save the four images to the '/downloads/mj/output' folder
+            # Get the current date and time string
+            current_datetime = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+
+            # Save the four images with the pattern: "{current date and time string}_{i+1}.jpg"
             for i, img in enumerate(images):
-                img.save(os.path.join(output_folder, f"image_{i + 1}.jpg"))
+                img.save(os.path.join(output_folder, f"{current_datetime}_{i + 1}.jpg"))
 
             # Delete the downloaded image
             os.remove(downloaded_image_path)
